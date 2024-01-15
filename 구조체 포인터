@@ -27,4 +27,46 @@ int main()
 	printf("%s\n", sp->name);
 	sp = sp->next;
 	printf("%s\n", sp->name);
+}// 구조체 포인터 선언 후 값을 바꿔가면서 출력 예제
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define MAX 4
+
+typedef struct human {
+	char name[10];
+	float power;
+}human;
+
+void attack(struct human f1, struct human f2)
+{
+	if (f1.power > f2.power) printf("출동 %s", f1.name);
+	else if (f1.power < f2.power) printf("출동 %s", f2.name);
+	else printf("출동");
 }
+int main()
+{
+	human h1 = { "gildong",8.2 }, h2 = { "chansik", 8.2 };
+	attack(h1, h2);
+} // 구조체 참조에 의한 출력 코드
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define MAX 4
+
+typedef struct human {
+	char name[10];
+	float power;
+}human;
+
+struct human attack(struct human f1, struct human f2)
+{
+	if (f1.power > f2.power) return f1;
+	else return f2;
+}
+int main()
+{
+	human h1 = { "gildong",8.3 }, h2 = { "chansik", 8.2 }, att;
+	att = attack(h1, h2);
+	printf("출동 %s\n", att.name);
+	return 0;
+} // 구조체의 값 반환방식 호출 코드
