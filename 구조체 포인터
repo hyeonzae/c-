@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define MAX 4
+
+typedef struct human {
+	char name[10];
+	struct human* next;
+}human;
+
+int main()
+{
+	struct human h[MAX] = { {"gildong"},
+						{"hyungwook"},
+						{"changsik"},
+						{"hosik"}
+	};
+	struct human* sp;
+	h[0].next = &h[1];
+	h[1].next = &h[2];
+	h[2].next = &h[3];
+	h[3].next = NULL;
+	sp = &h[0];
+	printf("%s\n", sp->name);
+	sp = sp->next;
+	printf("%s\n", sp->name);
+	sp = sp->next;
+	printf("%s\n", sp->name);
+	sp = sp->next;
+	printf("%s\n", sp->name);
+}
